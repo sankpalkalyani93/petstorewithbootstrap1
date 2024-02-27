@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Payment Confirmation {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Payment Confirmation</h1>
+    <button id="rzp-button">Pay with Razorpay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.getElementById('rzp-button').addEventListener('click', function (e) {
+            var options = {
+                key: "{{ razorpay_key_id }}",
+                amount: "{{ order_amount }}",
+                currency: "INR",
+                name: "It Vedant",
+                description: "Purchase Description",
+                prefill: {
+                    name: "Kalyani-Akash",
+                    email: "sankpalkalyani93@gmail.com"
+                },
+                theme: {
+                    color: "#F37254"
+                },
+                handler: function (response) {
+                    alert('Payment successful. Payment ID: ' + response.razorpay_payment_id);
+                }
+            };
+            console.log("Razorpay key:", "{{ settings.RAZORPAY_TEST_KEY_ID }}");
+            var rzp = new Razorpay(options);
+            console.log("Razorpay key:", "{{ settings.RAZORPAY_TEST_KEY_ID }}");
+            rzp.open();
+            console.log("Razorpay key:", "{{ settings.RAZORPAY_TEST_KEY_ID }}");
+            e.preventDefault();
+        });
+    </script>
+</div>
+{% endblock %}

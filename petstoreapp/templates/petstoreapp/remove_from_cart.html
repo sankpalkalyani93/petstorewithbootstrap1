@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Cart Page {% endblock %}
+
+{% block content %}
+    <h1>Item Removed</h1>
+    <p>The item has been successfully removed from your cart.</p>
+    <a href="{% url 'cart' %}">Back to Cart</a>
+    
+{% end block %}

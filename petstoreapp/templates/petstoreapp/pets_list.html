@@ -24,7 +24,7 @@
         {% for pet in pets %}
             <li class="list-group-item"> 
                 <div class="d-flex w-100 justify-content-between">
-                    <h2>{{ pet.name }}</h2>   
+                    <h2><a href="{%  url 'pets_detail' pet.id %} ">{{ pet.name }}</a></h2>   
                     <h3>{{ pet.breed }}</h3>
                     <h4>{{ pet.price }}</h4>
                 </div>
@@ -35,6 +35,9 @@
                         <p>No Image</p>
                     {% endif %}
                 </p>
+                {% for tag in pet.tags.all %}
+                    {{ tag.name }}
+                {% endfor %}
             </li>
         {% endfor %}
     </ul>
